@@ -21,8 +21,9 @@ void add_days_to_date(int *dd, int *mm, int *yy, int days_left_to_add) {
     }
 
     if (days_left_to_add > days_left_in_month) {
-      days_left_to_add -= days_left_in_month + 1;
+      int days_till_next_month = days_left_in_month + 1;
 
+      days_left_to_add -= days_till_next_month;
       *dd = 1;
 
       if (*mm == 12) {
@@ -55,5 +56,5 @@ int main(void) {
   char formatted_mm[DATE_BYTES];
   sprintf(formatted_mm, mm < 10 ? "0%d" : "%d", mm);
 
-  printf( "New date - %s.%s.%d \n", formatted_dd, formatted_mm, yy);
+  printf( "Date after %d days | %s.%s.%d \n", days_left_to_add, formatted_dd, formatted_mm, yy);
 }
